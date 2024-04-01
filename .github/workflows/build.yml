@@ -35,7 +35,7 @@ jobs:
         with:
           php-version: ${{ matrix.php-versions }}
           extensions: mbstring, pdo, pdo_mysql, intl, zip
-          coverage: xdebug
+          coverage: none
 
       - name: Check PHP version
         run: php -v
@@ -69,6 +69,8 @@ jobs:
 
       - name: Execute database migrations
         run: composer migrate-prod
+        env:
+          APP_ENV: github
 
       - name: Show test db tables
         run: mysql -uroot -proot -D ${{ matrix.test-database }} -e "SHOW TABLES;"
