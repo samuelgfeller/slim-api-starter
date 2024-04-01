@@ -2,9 +2,7 @@
 
 namespace App\Domain\User\Service;
 
-use App\Domain\User\Data\UserData;
 use App\Domain\User\Repository\UserCreatorRepository;
-use App\Domain\User\Repository\UserFinderRepository;
 
 final readonly class UserCreator
 {
@@ -15,7 +13,9 @@ final readonly class UserCreator
     }
 
     /**
-     * Create new user with given values
+     * Create new user with given values.
+     *
+     * @param array $userValues
      *
      * @return int user id
      */

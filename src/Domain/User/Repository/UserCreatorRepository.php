@@ -8,14 +8,14 @@ final readonly class UserCreatorRepository
 {
     public function __construct(
         private QueryFactory $queryFactory,
-    )
-    {
+    ) {
     }
 
     /**
      * Insert user values into database.
      *
      * @param array $userValues
+     *
      * @return int
      */
     public function insertUser(array $userValues): int

@@ -7,11 +7,10 @@ use Cake\Validation\Validator;
 
 /**
  * User validation.
- * Documentation: https://github.com/samuelgfeller/slim-example-project/wiki/Validation
+ * Documentation: https://github.com/samuelgfeller/slim-example-project/wiki/Validation.
  */
 final readonly class UserValidator
 {
-
     /**
      * Validate user values.
      *
@@ -27,15 +26,15 @@ final readonly class UserValidator
 
         $validator
             ->requirePresence('first_name', $isCreateMode, 'Field is required')
-            ->allowEmptyString('first_name',) // Not required field
+            ->allowEmptyString('first_name') // Not required field
             ->minLength('first_name', 2, 'Minimum length is 2')
             ->maxLength('first_name', 100, 'Maximum length is 100')
             ->requirePresence('last_name', $isCreateMode, 'Field is required')
-            ->allowEmptyString('last_name',) // Not required field
+            ->allowEmptyString('last_name') // Not required field
             ->minLength('last_name', 2, 'Minimum length is 2')
             ->maxLength('last_name', 100, 'Maximum length is 100')
             ->requirePresence('email', $isCreateMode, 'Field is required')
-            ->allowEmptyString('first_name',) // Not required field
+            ->allowEmptyString('first_name') // Not required field
             ->email('email', false, 'Invalid email')
         ;
 
