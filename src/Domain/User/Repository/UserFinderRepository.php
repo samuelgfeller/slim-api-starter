@@ -3,14 +3,14 @@
 namespace App\Domain\User\Repository;
 
 use App\Domain\User\Data\UserData;
-use App\Infrastructure\Factory\QueryFactory;
 use App\Infrastructure\Utility\Hydrator;
+use Cake\Database\Connection;
 
 final readonly class UserFinderRepository
 {
     public function __construct(
-        private QueryFactory $queryFactory,
-        private Hydrator $hydrator
+        private Connection $connection,
+        private Hydrator $hydrator,
     ) {
     }
 
@@ -21,7 +21,7 @@ final readonly class UserFinderRepository
      */
     public function findAllUsers(): array
     {
-        $query = $this->queryFactory->selectQuery()->select([
+        $query = $this->connection->selectQuery()->select([
             'id',
             'first_name',
             'last_name',

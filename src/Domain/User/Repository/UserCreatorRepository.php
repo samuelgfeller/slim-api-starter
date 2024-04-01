@@ -2,13 +2,12 @@
 
 namespace App\Domain\User\Repository;
 
-use App\Infrastructure\Factory\QueryFactory;
+use Cake\Database\Connection;
 
 final readonly class UserCreatorRepository
 {
-    public function __construct(
-        private QueryFactory $queryFactory,
-    ) {
+    public function __construct(private Connection $connection)
+    {
     }
 
     /**
@@ -21,6 +20,10 @@ final readonly class UserCreatorRepository
     public function insertUser(array $userValues): int
     {
         // Insert user into database
-        return (int)$this->queryFactory->insertQueryWithData($userValues)->into('user')->execute()->lastInsertId();
+        return (int)$this->connection->insertQuery()
+            ->insert(array_keys($userValues))
+            ->values($userValues)
+            ->into('user')
+            ->execute()->lastInsertId();
     }
 }
