@@ -13,6 +13,9 @@ return function (App $app) {
     // Has to be after Routing
     $app->add(Selective\BasePath\BasePathMiddleware::class);
 
+    // Returns a response with validation errors
+    $app->add(\App\Application\Middleware\ValidationExceptionMiddleware::class);
+
     // Handle and log notices and warnings (throws ErrorException if displayErrorDetails is true)
     $app->add(\App\Application\Middleware\NonFatalErrorHandlerMiddleware::class);
     // Set error handler to custom DefaultErrorHandler (defined in container.php)

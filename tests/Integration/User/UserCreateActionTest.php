@@ -36,4 +36,42 @@ class UserCreateActionTest extends TestCase
         // Assert that the user was created in the database
         $this->assertTableRow($testUserData, 'user', $testUserData['id']);
     }
+
+    public function testUserCreateActionInvalid(): void
+    {
+        // Set invalid data
+        $invalidUserData = [
+            'first_name' => 'J', // min length is 2
+            'last_name' => 'D', // min length is 2
+            'email' => 'invalid-email',
+        ];
+        // Make request
+        $request = $this->createJsonRequest('POST', $this->urlFor('user-create'), $invalidUserData);
+        $response = $this->app->handle($request);
+
+        // Assert status code
+        self::assertSame(StatusCodeInterface::STATUS_UNPROCESSABLE_ENTITY, $response->getStatusCode());
+
+        // Assert that no database record was created
+        $this->assertTableRowCount(0, 'user');
+
+        // Assert that the response contains the validation error messages
+        $this->assertJsonData([
+            'status' => 'error',
+            'message' => 'Validation error',
+            'data' => [
+                'errors' => [
+                    'first_name' => [
+                        0 => 'Minimum length is 2',
+                    ],
+                    'last_name' => [
+                        0 => 'Minimum length is 2',
+                    ],
+                    'email' => [
+                        0 => 'Invalid email',
+                    ],
+                ],
+            ],
+        ], $response);
+    }
 }
