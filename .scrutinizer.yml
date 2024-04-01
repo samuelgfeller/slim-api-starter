@@ -37,7 +37,7 @@ build:
   dependencies:
     before:
       - composer self-update
-      - mysql -uroot -e "CREATE DATABASE IF NOT EXISTS slim_api_example_test CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;"
+      - mysql -uroot -e "CREATE DATABASE IF NOT EXISTS slim_api_starter_test CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;"
   tests:
     before:
       - command: composer test:coverage
