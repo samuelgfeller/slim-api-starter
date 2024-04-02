@@ -1,6 +1,7 @@
 <?php
 /**
  * Development specific configuration values.
+ * https://github.com/samuelgfeller/slim-example-project/wiki/Configuration
  */
 
 // Set false to show production error pages

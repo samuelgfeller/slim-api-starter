@@ -8,12 +8,13 @@
 </head>
 <body>
 <h1>Frontend for Slim API Starter</h1>
-<p>This frontend is an example of a separate application that will communicate with the API.</p>
+<p>This frontend is an example of a separate application that communicates with the API.</p>
 <p>The link to the actual frontend must be added to the <code>$settings['api']['allowed_origin']</code>
     in the config files: <code class="file-name">config/env/env.dev.php</code> and <code class="file-name">config/env/env.prod.php</code>.
 </p>
-<p>You can test the API by clicking on the button below. It should request the list of users
-    that were inserted for demonstration purposes.</p>
+<p>You can test the API by clicking on the button below which will make an Ajax
+    GET request to retrieve the list of users
+    that are in the database.</p>
 <button id="request-users-btn">GET /users</button>
 <pre id="request-output" style="display: none"></pre>
 

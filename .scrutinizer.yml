@@ -1,7 +1,6 @@
 filter:
   paths: [ "src/*" ]
-  excluded_paths: [ "vendor/*", "tests/*", "resources/", "public/", "src/Infrastructure/Console/**",
-                    "src/Application/ErrorHandler/**", ]
+  excluded_paths: [ "vendor/*", "tests/*", "resources/", "public/", "src/Infrastructure/Console/**", "src/Application/ErrorHandler/**", ]
 
 checks:
   php:

@@ -3,6 +3,11 @@
 <h1>Slim <img src="https://i.imgur.com/YzDYQ0V.png" width="60px" alt="API"> starter</h1>
 
 [![Latest Version on Packagist](https://img.shields.io/github/release/samuelgfeller/slim-api-starter.svg)](https://packagist.org/packages/slim-api-starter)
+[![Code Coverage](https://scrutinizer-ci.com/g/samuelgfeller/slim-api-starter/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/samuelgfeller/slim-api-starter/?branch=master)
+[![Build Status](https://scrutinizer-ci.com/g/samuelgfeller/slim-api-starter/badges/build.png?b=master)](https://scrutinizer-ci.com/g/samuelgfeller/slim-api-starter/build-status/master)
+[![Quality Score](https://img.shields.io/scrutinizer/quality/g/samuelgfeller/slim-api-starter.svg)](https://scrutinizer-ci.com/g/samuelgfeller/slim-api-starter/?branch=master)
+[![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg)](LICENSE)
+
 
 [Slim 4](https://www.slimframework.com/) API starter template with a few examples and some essential [features](#features) to 
 build a secure and scalable API following 2024 best practices and 
@@ -65,7 +70,7 @@ demo table `user`:
 composer migrate
 ```
 
-### 4. Insert demo data
+#### 4. Insert demo data
 You can install four demo users into the database to test the API response by
 running the following command:
 
@@ -81,7 +86,7 @@ Replace the matrix value "test-database" `slim_api_starter_test` with the name o
 your test database as you specified in `config/env/env.test.php`.
 If you are not using Scrutinizer, remove the "Scrutinizer Scan" step from the workflow.  
 
-### Done!
+#### Done!
 That's it! Your project should now be fully set up and ready to use.  
 If you are using XAMPP and installed the project in the `htdocs` folder, you can access it via
 http://localhost/project-name.  

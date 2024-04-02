@@ -1,3 +1,5 @@
+# Documentation:https://github.com/samuelgfeller/slim-example-project/wiki/GitHub-Actions#build-testing
+# How to deploy: https://github.com/samuelgfeller/slim-example-project/wiki/GitHub-Actions#deploying-to-server
 name: 🧪 Build test
 on:
   push:
@@ -6,6 +8,10 @@ on:
       - develop
   pull_request:
     types: [ opened, synchronize, reopened ]
+
+env:
+  # Set APP_ENV to 'github' so that settings.php loads the correct configuration for database migrations and testing
+  APP_ENV: github
 
 jobs:
   run:
@@ -69,8 +75,6 @@ jobs:
 
       - name: Execute database migrations
         run: composer migrate-prod
-        env:
-          APP_ENV: github
 
       - name: Show test db tables
         run: mysql -uroot -proot -D ${{ matrix.test-database }} -e "SHOW TABLES;"
@@ -78,5 +82,4 @@ jobs:
       - name: Run test suite
         run: composer test
         env:
-          APP_ENV: github
           PHP_CS_FIXER_IGNORE_ENV: 1
