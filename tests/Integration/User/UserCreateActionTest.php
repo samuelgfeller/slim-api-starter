@@ -4,6 +4,7 @@ namespace App\Test\Integration\User;
 
 use App\Test\Trait\AppTestTrait;
 use Fig\Http\Message\StatusCodeInterface;
+use PHPUnit\Framework\Attributes\DataProviderExternal;
 use PHPUnit\Framework\TestCase;
 use TestTraits\Trait\DatabaseTestTrait;
 use TestTraits\Trait\HttpJsonTestTrait;
@@ -37,16 +38,18 @@ class UserCreateActionTest extends TestCase
         $this->assertTableRow($testUserData, 'user', $testUserData['id']);
     }
 
-    public function testUserCreateActionInvalid(): void
+    /**
+     * Test that no user is created and validation exception is thrown
+     * when the user submits invalid data.
+     *
+     * @param array<string, string> $requestBody data containing invalid user create request data
+     * @param array<string, string|array<string|int, mixed>> $expectedJsonResponse expected json response
+     */
+    #[DataProviderExternal(\App\Test\Provider\User\UserCreateProvider::class, 'invalidUserCreateCases')]
+    public function testUserCreateActionInvalid(array $requestBody, array $expectedJsonResponse): void
     {
-        // Set invalid data
-        $invalidUserData = [
-            'first_name' => 'J', // min length is 2
-            'last_name' => 'D', // min length is 2
-            'email' => 'invalid-email',
-        ];
         // Make request
-        $request = $this->createJsonRequest('POST', $this->urlFor('user-create'), $invalidUserData);
+        $request = $this->createJsonRequest('POST', $this->urlFor('user-create'), $requestBody);
         $response = $this->app->handle($request);
 
         // Assert status code
@@ -56,22 +59,6 @@ class UserCreateActionTest extends TestCase
         $this->assertTableRowCount(0, 'user');
 
         // Assert that the response contains the validation error messages
-        $this->assertJsonData([
-            'status' => 'error',
-            'message' => 'Validation error',
-            'data' => [
-                'errors' => [
-                    'first_name' => [
-                        0 => 'Minimum length is 2',
-                    ],
-                    'last_name' => [
-                        0 => 'Minimum length is 2',
-                    ],
-                    'email' => [
-                        0 => 'Invalid email',
-                    ],
-                ],
-            ],
-        ], $response);
+        $this->assertJsonData($expectedJsonResponse, $response);
     }
 }

@@ -6,15 +6,17 @@
 [![Code Coverage](https://scrutinizer-ci.com/g/samuelgfeller/slim-api-starter/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/samuelgfeller/slim-api-starter/?branch=master)
 [![Build Status](https://scrutinizer-ci.com/g/samuelgfeller/slim-api-starter/badges/build.png?b=master)](https://scrutinizer-ci.com/g/samuelgfeller/slim-api-starter/build-status/master)
 [![Quality Score](https://img.shields.io/scrutinizer/quality/g/samuelgfeller/slim-api-starter.svg)](https://scrutinizer-ci.com/g/samuelgfeller/slim-api-starter/?branch=master)
-[![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg)](LICENSE)
+[![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg)](LICENCE.txt)
 
 
 [Slim 4](https://www.slimframework.com/) API starter template with a few examples and some essential [features](#features) to 
 build a secure and scalable API following 2024 best practices and 
 [SOLID](https://en.wikipedia.org/wiki/SOLID) principles.  
 
-An extensive [documentation](https://github.com/samuelgfeller/slim-example-project/wiki) explains 
-the project structure, components, design choices and features.   
+An extensive [**documentation**](https://github.com/samuelgfeller/slim-example-project/wiki) explains 
+the [architecture](https://github.com/samuelgfeller/slim-example-project/wiki/Architecture), components, 
+design choices (i.e. [SRP](https://github.com/samuelgfeller/slim-example-project/wiki/Single-Responsibility-Principle-(SRP))) 
+and features.   
 
 </div>
 
@@ -48,7 +50,7 @@ This will create a new directory with the specified name and install all
 necessary dependencies.
 
 #### 2. Set up the database
-Open the project and rename the file `config/env/env.example.php` to `env.php` 
+Open the project and rename the file `config/env/env.example.php` to `config/env/env.php` 
 and add the local database credentials.  
 
 Then, create the database on the server and update the `config/env/env.dev.php` 
@@ -88,8 +90,8 @@ If you are not using Scrutinizer, remove the "Scrutinizer Scan" step from the wo
 
 #### Done!
 That's it! Your project should now be fully set up and ready to use.  
-If you are using XAMPP and installed the project in the `htdocs` folder, you can access it via
-http://localhost/project-name.  
+If you are using XAMPP and installed the project in the `htdocs` folder, you can access it 
+in the browser at `http://localhost/project-name`.  
 Or you can serve it locally by running `php -S localhost:8080 -t public/` in the project's root 
 directory.
 

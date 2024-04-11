@@ -14,11 +14,8 @@ final readonly class UserCreateAction
     ) {
     }
 
-    public function __invoke(
-        ServerRequestInterface $request,
-        ResponseInterface $response,
-        array $args
-    ): ResponseInterface {
+    public function __invoke(ServerRequestInterface $request, ResponseInterface $response): ResponseInterface
+    {
         $userValues = (array)$request->getParsedBody();
 
         $this->userCreator->createUser($userValues);

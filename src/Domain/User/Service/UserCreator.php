@@ -2,6 +2,7 @@
 
 namespace App\Domain\User\Service;
 
+use App\Domain\User\Data\UserData;
 use App\Domain\User\Repository\UserCreatorRepository;
 
 final readonly class UserCreator
@@ -13,16 +14,23 @@ final readonly class UserCreator
     }
 
     /**
-     * Create new user with given values.
+     * User creation logic.
      *
-     * @param array $userValues
+     * @param array<string, mixed> $userValues
      *
-     * @return int user id
+     * @return int insert id
      */
     public function createUser(array $userValues): int
     {
+        // Validate user values
         $this->userValidator->validateUserValues($userValues);
 
-        return $this->userCreatorRepository->insertUser($userValues);
+        // Create user data object
+        $user = new UserData($userValues);
+        // Serialize user data object to array where keys represent database fields
+        $userRow = $user->toArrayForDatabase();
+
+        // Insert new user into database
+        return $this->userCreatorRepository->insertUser($userRow);
     }
 }

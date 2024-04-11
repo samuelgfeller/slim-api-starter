@@ -11,18 +11,18 @@ final readonly class UserCreatorRepository
     }
 
     /**
-     * Insert user values into database.
+     * Insert user values into the database.
      *
-     * @param array $userValues
+     * @param array<string, int|string|null> $userRow
      *
-     * @return int
+     * @return int lastInsertId
      */
-    public function insertUser(array $userValues): int
+    public function insertUser(array $userRow): int
     {
         // Insert user into database
         return (int)$this->connection->insertQuery()
-            ->insert(array_keys($userValues))
-            ->values($userValues)
+            ->insert(array_keys($userRow))
+            ->values($userRow)
             ->into('user')
             ->execute()->lastInsertId();
     }

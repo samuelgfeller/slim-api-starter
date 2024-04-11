@@ -24,6 +24,8 @@ document.getElementById('request-users-btn').addEventListener('click', () => {
                     outputContainer.innerHTML = `Invalid API url: ${url}`;
                     return;
                 }
+                outputContainer.innerHTML = `Error: ${response.status} ${response.statusText}`;
+                return;
             }
 
             // Parse the JSON response

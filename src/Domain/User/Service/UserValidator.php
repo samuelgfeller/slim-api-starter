@@ -14,7 +14,7 @@ final readonly class UserValidator
     /**
      * Validate user values.
      *
-     * @param array $userValues
+     * @param array<string, mixed> $userValues
      * @param bool $isCreateMode
      */
     public function validateUserValues(array $userValues, bool $isCreateMode = true): void
@@ -26,15 +26,17 @@ final readonly class UserValidator
 
         $validator
             ->requirePresence('first_name', $isCreateMode, 'Field is required')
-            ->allowEmptyString('first_name') // Not required field
+            // Disallow empty strings as field is required
+            ->notEmptyString('first_name', 'Required')
             ->minLength('first_name', 2, 'Minimum length is 2')
             ->maxLength('first_name', 100, 'Maximum length is 100')
             ->requirePresence('last_name', $isCreateMode, 'Field is required')
-            ->allowEmptyString('last_name') // Not required field
+            // Allow null and empty strings as field is not required
+            ->allowEmptyString('last_name')
             ->minLength('last_name', 2, 'Minimum length is 2')
             ->maxLength('last_name', 100, 'Maximum length is 100')
             ->requirePresence('email', $isCreateMode, 'Field is required')
-            ->allowEmptyString('first_name') // Not required field
+            // email() automatically disallows empty strings so the field is required
             ->email('email', false, 'Invalid email')
         ;
 
