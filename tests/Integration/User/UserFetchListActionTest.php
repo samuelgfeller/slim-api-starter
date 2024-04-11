@@ -28,7 +28,7 @@ class UserFetchListActionTest extends TestCase
         ];
 
         // Insert test data
-        $this->insertFixture(new UserFixture(), $testUserRow);
+        $this->insertFixture(UserFixture::class, $testUserRow);
 
         // Make request
         $request = $this->createJsonRequest('GET', $this->urlFor('user-list'));
@@ -37,9 +37,17 @@ class UserFetchListActionTest extends TestCase
         // Assert status code
         self::assertSame(StatusCodeInterface::STATUS_OK, $response->getStatusCode());
 
-        $jsonData = $this->getJsonData($response);
+        // Expected response data
+        $expectedResponseData = [
+            [
+                'id' => $testUserRow['id'],
+                'firstName' => $testUserRow['first_name'],
+                'lastName' => $testUserRow['last_name'],
+                'email' => $testUserRow['email'],
+            ],
+        ];
 
         // Assert that response data contains the user row inserted into the database above
-        self::assertArrayIsEqualToArrayOnlyConsideringListOfKeys($testUserRow, $jsonData[0], array_keys($testUserRow));
+        $this->assertPartialJsonData($expectedResponseData, $this->getJsonData($response));
     }
 }

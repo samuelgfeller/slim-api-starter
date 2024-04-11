@@ -24,7 +24,7 @@
     "jetbrains/phpstorm-attributes": "^1.0",
     "friendsofphp/php-cs-fixer": "^3",
     "odan/phinx-migrations-generator": "^6",
-    "samuelgfeller/test-traits": "^5"
+    "samuelgfeller/test-traits": "^6"
   },
   "autoload": {
     "psr-4": {
