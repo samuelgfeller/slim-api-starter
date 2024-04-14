@@ -2,7 +2,7 @@
 
 use Phinx\Db\Adapter\MysqlAdapter;
 
-class DbChange1187610968660592e09f632 extends Phinx\Migration\AbstractMigration
+class DbChange2053913810661953ba0c3e8 extends Phinx\Migration\AbstractMigration
 {
     public function change()
     {
@@ -47,6 +47,7 @@ class DbChange1187610968660592e09f632 extends Phinx\Migration\AbstractMigration
             ->addColumn('updated_at', 'datetime', [
                 'null' => true,
                 'default' => null,
+                'update' => 'CURRENT_TIMESTAMP',
                 'after' => 'email',
             ])
             ->addColumn('created_at', 'datetime', [

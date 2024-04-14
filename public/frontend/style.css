@@ -18,10 +18,8 @@ code {
     padding: 2px;
 }
 
-code.file-name {
+code.blue-code {
     color: #02155e;
-    background-color: #f1f1f1;
-    padding: 2px;
 }
 
 pre {
@@ -30,11 +28,18 @@ pre {
 
 #request-users-btn {
     margin-top: 30px;
+    margin-bottom: 20px;
     cursor: pointer;
 }
 
+#access-header-output{
+    color: #008fa2;
+}
+#access-header-output.no-header{
+    color: red;
+}
+
 #request-output {
-    margin-top: 40px;
     border-radius: 20px;
     padding: 30px;
     background: #f1f1f1;

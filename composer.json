@@ -1,6 +1,6 @@
 {
   "name": "samuelgfeller/slim-api-starter",
-  "description": "Example project with the slim micro-framework",
+  "description": "API starter template using Slim micro-framework",
   "type": "project",
   "license": "MIT",
   "require": {
@@ -49,9 +49,9 @@
       "phinx-migrations generate --overwrite -c config/env/env.phinx.php --ansi",
       "@schema:generate"
     ],
-    "migrate-prod": "vendor/bin/phinx migrate -c config/env/env.phinx.php --ansi -vvv",
+    "migrate:prod": "vendor/bin/phinx migrate -c config/env/env.phinx.php --ansi -vvv",
     "migrate": [
-      "@migrate-prod",
+      "@migrate:prod",
       "@schema:generate"
     ],
     "schema:generate": [
