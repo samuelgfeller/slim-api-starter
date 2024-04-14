@@ -10,7 +10,7 @@
 
 
 [Slim 4](https://www.slimframework.com/) API starter template with a few examples and some essential [features](#features) to 
-build a secure and scalable API following 2024 best practices and 
+help you build a secure and scalable API following 2024 best practices and 
 [SOLID](https://en.wikipedia.org/wiki/SOLID) principles.  
 
 An extensive [**documentation**](https://github.com/samuelgfeller/slim-example-project/wiki) explains 
