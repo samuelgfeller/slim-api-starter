@@ -1,4 +1,9 @@
 <?php
+/**
+ * Dependency Injection container configuration.
+ *
+ * Documentation: https://github.com/samuelgfeller/slim-example-project/wiki/Dependency-Injection.
+ */
 
 use App\Application\Middleware\NonFatalErrorHandlerMiddleware;
 use App\Infrastructure\Utility\Settings;
@@ -14,23 +19,39 @@ use Psr\Log\LoggerInterface;
 use Selective\BasePath\BasePathMiddleware;
 use Slim\App;
 use Slim\Factory\AppFactory;
-use Slim\Interfaces\RouteParserInterface;
 use Slim\Middleware\ErrorMiddleware;
 
 return [
     'settings' => function () {
         return require __DIR__ . '/settings.php';
     },
+
+    // Create app instance
     App::class => function (ContainerInterface $container) {
         $app = AppFactory::createFromContainer($container);
         // Register routes
         (require __DIR__ . '/routes.php')($app);
 
-        // Register middleware
+        // Register middlewares
         (require __DIR__ . '/middleware.php')($app);
 
         return $app;
     },
+
+    // HTTP factories
+    ResponseFactoryInterface::class => function (ContainerInterface $container) {
+        return $container->get(Psr17Factory::class);
+    },
+    ServerRequestFactoryInterface::class => function (ContainerInterface $container) {
+        return $container->get(Psr17Factory::class);
+    },
+
+    // Determine the base path in case the application is not running in the root directory
+    BasePathMiddleware::class => function (ContainerInterface $container) {
+        return new BasePathMiddleware($container->get(App::class));
+    },
+
+    // Logging: https://github.com/samuelgfeller/slim-example-project/wiki/Logging
     LoggerInterface::class => function (ContainerInterface $container) {
         $loggerSettings = $container->get('settings')['logger'];
 
@@ -52,31 +73,7 @@ return [
         return $logger->pushHandler($rotatingFileHandler);
     },
 
-    // HTTP factories
-    // For Responder and error middleware
-    ResponseFactoryInterface::class => function (ContainerInterface $container) {
-        return $container->get(Psr17Factory::class);
-    },
-    ServerRequestFactoryInterface::class => function (ContainerInterface $container) {
-        return $container->get(Psr17Factory::class);
-    },
-
-    // For Responder
-    RouteParserInterface::class => function (ContainerInterface $container) {
-        return $container->get(App::class)->getRouteCollector()->getRouteParser();
-    },
-
-    // Error middlewares
-    NonFatalErrorHandlerMiddleware::class => function (ContainerInterface $container) {
-        $config = $container->get('settings')['error'];
-        $logger = $container->get(LoggerInterface::class);
-
-        return new NonFatalErrorHandlerMiddleware(
-            (bool)$config['display_error_details'],
-            (bool)$config['log_errors'],
-            $logger,
-        );
-    },
+    // Error handling: https://github.com/samuelgfeller/slim-example-project/wiki/Error-Handling
     // Set error handler to custom DefaultErrorHandler
     ErrorMiddleware::class => function (ContainerInterface $container) {
         $config = $container->get('settings')['error'];
@@ -99,13 +96,25 @@ return [
 
         return $errorMiddleware;
     },
+    // Add error middleware for notices and warnings
+    NonFatalErrorHandlerMiddleware::class => function (ContainerInterface $container) {
+        $config = $container->get('settings')['error'];
+        $logger = $container->get(LoggerInterface::class);
 
-    // Database
+        return new NonFatalErrorHandlerMiddleware(
+            (bool)$config['display_error_details'],
+            (bool)$config['log_errors'],
+            $logger,
+        );
+    },
+
+    // Establish database connection
     Connection::class => function (ContainerInterface $container) {
         $settings = $container->get('settings')['db'];
 
         return new Connection($settings);
     },
+    // PDO instance is required for integration testing and schema.sql generation
     PDO::class => function (ContainerInterface $container) {
         $driver = $container->get(Connection::class)->getDriver();
         $class = new ReflectionClass($driver);
@@ -116,17 +125,18 @@ return [
         return $method->invoke($driver);
     },
     // Used by command line to generate `schema.sql` for integration testing
+    // Documentation: https://github.com/samuelgfeller/slim-example-project/wiki/Test-setup#generating-the-schema-file
     'SqlSchemaGenerator' => function (ContainerInterface $container) {
-        return new \App\Infrastructure\Console\SqlSchemaGenerator(
+        return new TestTraits\Console\SqlSchemaGenerator(
             $container->get(PDO::class),
-            $container->get('settings')['root_dir']
+            // Schema output folder
+            $container->get('settings')['root_dir'] . '/resources/schema'
         );
     },
+
+    // Settings object that classes can inject to get access to the local configuration
+    // Documentation: https://github.com/samuelgfeller/slim-example-project/wiki/Configuration#using-the-settings-class
     Settings::class => function (ContainerInterface $container) {
         return new Settings($container->get('settings'));
-    },
-
-    BasePathMiddleware::class => function (ContainerInterface $container) {
-        return new BasePathMiddleware($container->get(App::class));
     },
 ];

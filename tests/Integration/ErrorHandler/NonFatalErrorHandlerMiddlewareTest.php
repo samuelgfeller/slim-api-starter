@@ -25,7 +25,7 @@ class NonFatalErrorHandlerMiddlewareTest extends TestCase
         $this->app->get('/error', function ($request, $response, $args) {
             // This will trigger a PHP notice because $undefinedVar is not defined
             /** @phpstan-ignore-next-line */
-            echo $undefinedVar;
+            echo $undefinedVar['a'];
 
             return $response;
         });

@@ -87,7 +87,8 @@ final readonly class DefaultApiErrorHandler implements ErrorHandlerInterface
         // If it's a HttpException it's safe to show the error message to the user
         $exceptionMessage = $exception instanceof HttpException ? $exception->getMessage() : null;
 
-        // Error details are never returned to the client. The log file is the only place where the details are stored.
+        // Error details are not returned to the client by default.
+        // The log file is the only place where the details are stored.
         $jsonErrorResponse = [
             'status' => $statusCode,
             'message' => $exceptionMessage ?? $reasonPhrase,

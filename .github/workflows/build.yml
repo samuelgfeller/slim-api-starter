@@ -1,4 +1,4 @@
-# Documentation:https://github.com/samuelgfeller/slim-example-project/wiki/GitHub-Actions#build-testing
+# Documentation: https://github.com/samuelgfeller/slim-example-project/wiki/GitHub-Actions#build-testing
 # How to deploy: https://github.com/samuelgfeller/slim-example-project/wiki/GitHub-Actions#deploying-to-server
 name: 🧪 Build test
 on:
@@ -36,6 +36,7 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
@@ -60,9 +61,6 @@ jobs:
 
       - name: Check MySQL variables
         run: mysql -uroot -proot -e "SHOW VARIABLES LIKE 'version%';"
-
-      - name: Set MySQL timezone to swiss time
-        run: mysql -uroot -proot -e "SET GLOBAL time_zone = '+01:00';"
 
       - name: Create database
         run: mysql -uroot -proot -e 'CREATE DATABASE IF NOT EXISTS ${{ matrix.test-database }} CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;'

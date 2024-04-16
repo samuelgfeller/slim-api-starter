@@ -16,7 +16,7 @@ help you build a secure and scalable API following 2024 best practices and
 An extensive [**documentation**](https://github.com/samuelgfeller/slim-example-project/wiki) explains 
 the [architecture](https://github.com/samuelgfeller/slim-example-project/wiki/Architecture), components, 
 design choices (i.e. [SRP](https://github.com/samuelgfeller/slim-example-project/wiki/Single-Responsibility-Principle-(SRP))) 
-and features.   
+and features.  
 
 </div>
 
