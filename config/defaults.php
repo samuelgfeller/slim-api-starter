@@ -17,16 +17,14 @@ $settings = [];
 // Project root dir (1 parent)
 $settings['root_dir'] = dirname(__DIR__, 1);
 
-// Error handling
-// Documentation: https://github.com/samuelgfeller/slim-example-project/wiki/Error-Handling
 // Enable error reporting for all errors
 error_reporting(E_ALL);
+// Error handling. Documentation: https://github.com/samuelgfeller/slim-example-project/wiki/Error-Handling
 $settings['error'] = [
-    // MUST be set to false in production.
+    // MUST be set to false in production to prevent disclosing sensitive information.
     // When set to true, it shows error details and throws an ErrorException for notices and warnings.
     'display_error_details' => false,
     'log_errors' => true,
-    'log_error_details' => true,
 ];
 
 // API documentation: https://github.com/samuelgfeller/slim-example-project/wiki/API-Endpoint

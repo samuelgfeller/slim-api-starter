@@ -16,9 +16,9 @@ return function (Slim\App $app) {
     // Returns a response with validation errors
     $app->add(App\Application\Middleware\ValidationExceptionMiddleware::class);
     // Handle and log notices and warnings (throws ErrorException if displayErrorDetails is true)
-    $app->add(App\Application\Middleware\NonFatalErrorHandlerMiddleware::class);
-    // Set error handler to custom DefaultErrorHandler (defined in container.php)
-    $app->add(Slim\Middleware\ErrorMiddleware::class);
+    $app->add(\SlimErrorRenderer\Middleware\NonFatalErrorHandlingMiddleware::class);
+    // Add exception handling middleware
+    $app->add(\SlimErrorRenderer\Middleware\ExceptionHandlingMiddleware::class);
 
     // Cross-Origin Resource Sharing (CORS) middleware - last middleware to be executed first
     // and can return response early (without calling handle()) for pre-flight requests.

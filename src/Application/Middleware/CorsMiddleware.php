@@ -26,6 +26,9 @@ final readonly class CorsMiddleware implements MiddlewareInterface
             // Skips the rest of the middleware stack and returns the response
             $response = $this->responseFactory->createResponse();
         } else {
+            // Override the "Accept" header to JSON because the API only supports JSON requests
+            // (e.g. return a json error response even if the request is text/html)
+            $request = $request->withHeader('Accept', 'application/json');
             // Continue with the middleware stack
             $response = $handler->handle($request);
         }
@@ -35,7 +38,7 @@ final readonly class CorsMiddleware implements MiddlewareInterface
             ->withHeader('Access-Control-Allow-Credentials', 'true')
             ->withHeader('Access-Control-Allow-Origin', $this->allowedOrigin ?? '')
             ->withHeader('Access-Control-Allow-Headers', '*')
-            ->withHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, DELETE, OPTIONS')
+            ->withHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, P ATCH, DELETE, OPTIONS')
             ->withHeader('Cache-Control', 'no-store, no-cache, must-revalidate, max-age=0')
             ->withHeader('Pragma', 'no-cache');
 
