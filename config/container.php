@@ -2,7 +2,7 @@
 /**
  * Dependency Injection container configuration.
  *
- * Documentation: https://github.com/samuelgfeller/slim-example-project/wiki/Dependency-Injection.
+ * Documentation: https://samuel-gfeller.ch/docs/Dependency-Injection.
  */
 
 use App\Infrastructure\Utility\Settings;
@@ -51,7 +51,7 @@ return [
         return new BasePathMiddleware($container->get(App::class));
     },
 
-    // Logging: https://github.com/samuelgfeller/slim-example-project/wiki/Logging
+    // Logging: https://samuel-gfeller.ch/docs/Logging
     LoggerInterface::class => function (ContainerInterface $container) {
         $loggerSettings = $container->get('settings')['logger'];
 
@@ -73,7 +73,7 @@ return [
         return $logger->pushHandler($rotatingFileHandler);
     },
 
-    // Error handling: https://github.com/samuelgfeller/slim-example-project/wiki/Error-Handling
+    // Error handling: https://samuel-gfeller.ch/docs/Error-Handling
     ExceptionHandlingMiddleware::class => function (ContainerInterface $container) {
         $settings = $container->get('settings');
 
@@ -112,7 +112,7 @@ return [
         return $method->invoke($driver);
     },
     // Used by command line to generate `schema.sql` for integration testing
-    // Documentation: https://github.com/samuelgfeller/slim-example-project/wiki/Test-setup#generating-the-schema-file
+    // Documentation: https://samuel-gfeller.ch/docs/Test-Setup#generating-the-schema-file
     'SqlSchemaGenerator' => function (ContainerInterface $container) {
         return new TestTraits\Console\SqlSchemaGenerator(
             $container->get(PDO::class),
@@ -122,7 +122,7 @@ return [
     },
 
     // Settings object that classes can inject to get access to the local configuration
-    // Documentation: https://github.com/samuelgfeller/slim-example-project/wiki/Configuration#using-the-settings-class
+    // Documentation: https://samuel-gfeller.ch/docs/Configuration#using-the-settings-class
     Settings::class => function (ContainerInterface $container) {
         return new Settings($container->get('settings'));
     },

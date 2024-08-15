@@ -8,7 +8,7 @@
  * without the risk of overwriting something.
  * The only file where the following is permitted: $settings['db'] = ['key' => 'val', 'nextKey' => 'nextVal'];
  *
- * Documentation: https://github.com/samuelgfeller/slim-example-project/wiki/Configuration.
+ * Documentation: https://samuel-gfeller.ch/docs/Configuration.
  */
 
 // Init settings var
@@ -19,7 +19,7 @@ $settings['root_dir'] = dirname(__DIR__, 1);
 
 // Enable error reporting for all errors
 error_reporting(E_ALL);
-// Error handling. Documentation: https://github.com/samuelgfeller/slim-example-project/wiki/Error-Handling
+// Error handling. Documentation: https://samuel-gfeller.ch/docs/Error-Handling
 $settings['error'] = [
     // MUST be set to false in production to prevent disclosing sensitive information.
     // When set to true, it shows error details and throws an ErrorException for notices and warnings.
@@ -27,7 +27,7 @@ $settings['error'] = [
     'log_errors' => true,
 ];
 
-// API documentation: https://github.com/samuelgfeller/slim-example-project/wiki/API-Endpoint
+// API documentation: https://samuel-gfeller.ch/docs/API-Endpoint
 $settings['api'] = [
     // Url that is allowed to make api calls to this app
     'allowed_origin' => null,
@@ -66,7 +66,7 @@ $settings['db'] = [
 ];
 
 // Phinx database migrations settings
-// Documentation: https://github.com/samuelgfeller/slim-example-project/wiki/Database-Migrations
+// Documentation: https://samuel-gfeller.ch/docs/Database-Migrations
 $settings['phinx'] = [
     'paths' => [
         'migrations' => $settings['root_dir'] . '/resources/migrations',
@@ -85,7 +85,7 @@ $settings['phinx'] = [
     ],
 ];
 
-// Logger: https://github.com/samuelgfeller/slim-example-project/wiki/Logging
+// Logger: https://samuel-gfeller.ch/docs/Logging
 $settings['logger'] = [
     // Log file location
     'path' => $settings['root_dir'] . '/logs',

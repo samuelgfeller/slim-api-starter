@@ -18,13 +18,13 @@ document.getElementById('request-users-btn').addEventListener('click', () => {
             // Display the Access-Control-Allow-Origin header value above the output container
             displayAccessControlAllowOriginHeader(response);
 
-            // Parse the JSON response
             let jsonResponse;
-            try {
+            if (response.headers.get('Content-type') === 'application/json') {
                 jsonResponse = await response.json();
-            } catch (error) {
+            }else {
                 outputContainer.className = 'error';
-                outputContainer.innerHTML = `Unable to parse JSON response. Make sure the response is valid JSON.`;
+                outputContainer.innerHTML = `The response doesn't contain the Content-type: application/json header.`;
+                outputContainer.innerHTML += await response.text();
                 return;
             }
 
@@ -42,7 +42,7 @@ document.getElementById('request-users-btn').addEventListener('click', () => {
                 return;
             }
 
-            // Add success class to output container by default
+            // Add success class to output container
             outputContainer.className = 'success';
         }).catch(exception => {
         outputContainer.className = 'error';

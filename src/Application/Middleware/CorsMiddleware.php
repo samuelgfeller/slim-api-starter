@@ -33,7 +33,7 @@ final readonly class CorsMiddleware implements MiddlewareInterface
             $response = $handler->handle($request);
         }
         // Add response headers in post-processing before the response is sent
-        // https://github.com/samuelgfeller/slim-example-project/wiki/Middleware#order-of-execution
+        // https://samuel-gfeller.ch/docs/Slim-Middleware#order-of-execution
         $response = $response
             ->withHeader('Access-Control-Allow-Credentials', 'true')
             ->withHeader('Access-Control-Allow-Origin', $this->allowedOrigin ?? '')

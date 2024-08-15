@@ -7,7 +7,7 @@ use Cake\Validation\Validator;
 
 /**
  * User validation.
- * Documentation: https://github.com/samuelgfeller/slim-example-project/wiki/Validation.
+ * Documentation: https://samuel-gfeller.ch/docs/Validation.
  */
 final readonly class UserValidator
 {

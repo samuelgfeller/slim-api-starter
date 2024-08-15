@@ -1,3 +1,3 @@
 <?php
 
-// Autoload functions https://github.com/samuelgfeller/slim-example-project/wiki/Composer#autoload
+// Autoload functions https://samuel-gfeller.ch/docs/Composer#autoload

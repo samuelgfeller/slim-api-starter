@@ -1,7 +1,7 @@
 <?php
 /**
  * Development specific configuration values.
- * Configuration documentation: https://github.com/samuelgfeller/slim-example-project/wiki/Configuration.
+ * Configuration documentation: https://samuel-gfeller.ch/docs/Configuration.
  */
 
 // Set false to show production error pages
