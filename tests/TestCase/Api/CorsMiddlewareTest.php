@@ -1,6 +1,6 @@
 <?php
 
-namespace Api;
+namespace App\Test\TestCase\Api;
 
 use App\Test\Trait\AppTestTrait;
 use PHPUnit\Framework\TestCase;

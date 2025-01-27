@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Domain\User\Repository;
+namespace App\Module\User\Create\Repository;
 
 use Cake\Database\Connection;
 

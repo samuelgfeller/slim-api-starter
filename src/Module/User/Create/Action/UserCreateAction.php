@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Application\Action\User;
+namespace App\Module\User\Create\Action;
 
-use App\Domain\User\Service\UserCreator;
+use App\Module\User\Create\Service\UserCreator;
 use Fig\Http\Message\StatusCodeInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Domain\User\Data;
+namespace App\Module\User\Data;
 
 class UserData implements \JsonSerializable
 {

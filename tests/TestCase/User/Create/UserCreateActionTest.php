@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Test\Integration\User;
+namespace App\Test\TestCase\User\Create;
 
+use App\Test\TestCase\User\Create;
 use App\Test\Trait\AppTestTrait;
 use Fig\Http\Message\StatusCodeInterface;
 use PHPUnit\Framework\Attributes\DataProviderExternal;
@@ -45,7 +46,7 @@ class UserCreateActionTest extends TestCase
      * @param array<string, string> $requestBody data containing invalid user create request data
      * @param array<string, string|array<string|int, mixed>> $expectedJsonResponse expected json response
      */
-    #[DataProviderExternal(\App\Test\Provider\User\UserCreateProvider::class, 'invalidUserCreateCases')]
+    #[DataProviderExternal(Create\UserCreateProvider::class, 'invalidUserCreateCases')]
     public function testUserCreateActionInvalid(array $requestBody, array $expectedJsonResponse): void
     {
         // Make request

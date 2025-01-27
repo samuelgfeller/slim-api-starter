@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Domain\User\Service;
+namespace App\Module\User\Validation\Service;
 
-use App\Domain\Exception\ValidationException;
+use App\Module\Validation\Exception\ValidationException;
 use Cake\Validation\Validator;
 
 /**

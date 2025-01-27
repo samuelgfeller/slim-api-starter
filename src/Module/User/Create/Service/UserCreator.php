@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Domain\User\Service;
+namespace App\Module\User\Create\Service;
 
-use App\Domain\User\Data\UserData;
-use App\Domain\User\Repository\UserCreatorRepository;
+use App\Module\User\Create\Repository\UserCreatorRepository;
+use App\Module\User\Data\UserData;
+use App\Module\User\Validation\Service\UserValidator;
 
 final readonly class UserCreator
 {

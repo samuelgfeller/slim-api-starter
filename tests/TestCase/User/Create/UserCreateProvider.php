@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Test\Provider\User;
+namespace App\Test\TestCase\User\Create;
 
 class UserCreateProvider
 {

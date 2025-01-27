@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Domain\User\Repository;
+namespace App\Module\User\List\Repository;
 
-use App\Domain\User\Data\UserData;
 use App\Infrastructure\Utility\Hydrator;
+use App\Module\User\Data\UserData;
 use Cake\Database\Connection;
 
-final readonly class UserFinderRepository
+final readonly class UserFindListRepository
 {
     public function __construct(
         private Connection $connection,

@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Application\Action\User;
+namespace App\Module\User\List\Action;
 
 use App\Application\Responder\JsonResponder;
-use App\Domain\User\Service\UserFinder;
+use App\Module\User\List\Service\UserListFinder;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 
@@ -11,7 +11,7 @@ final readonly class UserFetchListAction
 {
     public function __construct(
         private JsonResponder $jsonResponder,
-        private UserFinder $userFinder,
+        private UserListFinder $userFinder,
     ) {
     }
 

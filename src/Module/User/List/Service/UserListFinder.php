@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Domain\User\Service;
+namespace App\Module\User\List\Service;
 
-use App\Domain\User\Data\UserData;
-use App\Domain\User\Repository\UserFinderRepository;
+use App\Module\User\Data\UserData;
+use App\Module\User\List\Repository\UserFindListRepository;
 
-final readonly class UserFinder
+final readonly class UserListFinder
 {
     public function __construct(
-        private UserFinderRepository $userFinderRepository,
+        private UserFindListRepository $userFinderRepository,
     ) {
     }
 

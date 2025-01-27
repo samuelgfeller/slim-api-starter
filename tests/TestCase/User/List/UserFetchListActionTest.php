@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Test\Integration\User;
+namespace App\Test\TestCase\User\List;
 
 use App\Test\Fixture\UserFixture;
 use App\Test\Trait\AppTestTrait;
