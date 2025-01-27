@@ -46,7 +46,7 @@ class UserCreateActionTest extends TestCase
      * @param array<string, string> $requestBody data containing invalid user create request data
      * @param array<string, string|array<string|int, mixed>> $expectedJsonResponse expected json response
      */
-    #[DataProviderExternal(Create\UserCreateProvider::class, 'invalidUserCreateCases')]
+    #[DataProviderExternal(UserCreateProvider::class, 'invalidUserCreateCases')]
     public function testUserCreateActionInvalid(array $requestBody, array $expectedJsonResponse): void
     {
         // Make request
